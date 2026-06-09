@@ -1,14 +1,14 @@
 <?php
 /**
- * Form Jemput (Logistics/Pickup Scheduling Form)
+ * Form Jemput (Logistics/Pickup Scheduling Form) - Aligned with Dashboard
  * Pilah-Pilih Partner Dashboard
- * * Partners use this form to schedule organic waste pickup
  */
 
 require_once 'config.php';
 require_login();  // Require login to access
 
 $user_id = $_SESSION['user_id'];
+$company_name = $_SESSION['company_name'] ?? '';
 $error = '';
 $success = '';
 
@@ -108,7 +108,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 $csrf_token = generate_csrf_token();
-
 ?>
 <!DOCTYPE html>
 <html lang="id">
@@ -119,477 +118,462 @@ $csrf_token = generate_csrf_token();
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Share+Tech&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400..800;1,400..800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link href="dashboard.css" rel="stylesheet">
+    <link href="Mitra.css" rel="stylesheet">
+    
     <style>
-        :root {
-            /* Primary Colors matching Beranda */
-            --primary-dark: #354024;
-            --primary-light: #889063;
-            --primary-text: #141A0E;
-            
-            /* Supplementary Colors */
-            --eco-white: #E6E8DB;
-            --muted-sage: #C2C7A9;
-            --white: #ffffff;
-            
-            /* Radius & Shadow */
-            --radius-lg: 16px;
-            --radius-xl: 24px;
-            --shadow-sm: 0 4px 12px rgba(20, 26, 14, 0.05);
-            --shadow-md: 0 8px 24px rgba(20, 26, 14, 0.12);
-            --shadow-xl: 0 16px 48px rgba(20, 26, 14, 0.18);
-            --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        /* =========================================================
+           DASHBOARD UNIFIED PATTERN STYLING 
+           ========================================================= */
+        body {
+            background-color: #f7f8f4;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
         }
 
-        body {
-            font-family: 'Inter', sans-serif;
-            color: var(--primary-text);
+        .page-wrapper {
+            display: flex;
+            width: 100%;
+            min-height: 100vh;
+        }
+
+        /* --- SIDEBAR STYLE (MATCHED 100%) --- */
+        .sidebar {
+           width: 280px;
+            background-color: var(--primary-dark, #354024);
+            color: white;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            z-index: 1000;
             display: flex;
             flex-direction: column;
-            min-height: 100vh;
-            background-color: #f9faf7;
-        }
-
-        /* --- Navbar Styles --- */
-        .dashboard-navbar {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            box-shadow: var(--shadow-sm);
-            padding: 15px 0;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .dashboard-navbar .container-fluid {
-            display: flex;
             justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
+            padding: 20px 0;
+            transition: all 0.3s ease;
+            box-shadow: 4px 0 10px rgba(0,0,0,0.1);
+        }   
+        
 
-        .brand-text {
-            font-family: 'Bricolage Grotesque', sans-serif;
-            font-weight: 800;
-            color: var(--primary-dark);
-            font-size: 1.8rem;
-            letter-spacing: -1px;
+        .sidebar-brand {
+            padding: 0 20px 20px;
+            display: block;
+            color: white;
             text-decoration: none;
-            display: inline-block;
-        }
-
-        .brand-text span {
-            color: var(--primary-light);
-        }
-
-        .navbar-user {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .user-name {
-            font-weight: 600;
-            color: var(--primary-dark);
+            font-size: 1.5rem;
+            font-weight: 700;
             font-family: 'Bricolage Grotesque', sans-serif;
-        }
-
-        .btn-logout {
-            color: var(--primary-light);
-            text-decoration: none;
-            font-weight: 600;
-            transition: var(--transition-smooth);
-        }
-
-        .btn-logout:hover {
-            color: var(--primary-dark);
-        }
-
-        /* ==========================================================================
-           SECTION FORM STYLE (MENGADOPSI DARI LOGIN.PHP)
-           ========================================================================== */
-        .schedule-section {
-            padding: 80px 20px;
-            flex: 1; /* Memastikan section mengisi sisa ruang secara penuh */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-            min-height: 100vh;
-        }
-
-        /* Background Gambar Transparan ala Hero Section (Sama seperti login.php) */
-        .schedule-section::before {
-            content: "";
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            background: url('https://images.unsplash.com/photo-1459787759585-dc0201b4e0bb?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center;
-            background-size: cover;
-            background-attachment: fixed;
-            opacity: 0.3; /* Gambar dibuat transparan menyatu dengan gradien */
-            z-index: -2;
-            pointer-events: none; /* Agar tidak menutupi interaksi form */
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 20px;
         }
         
-        .schedule-section::after {
-            content: "";
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            background: linear-gradient(135deg, var(--eco-white) 0%, var(--muted-sage) 50%, #d8d0c3 100%);
-            z-index: -1;
-            pointer-events: none;
+        .sidebar-menu {
+            list-style: none;
+            padding: 0;
+            margin: 0;
         }
 
-        /* --- Form Container Styles --- */
-        .form-container {
-            width: 100%;
-            max-width: 800px;
-            position: relative;
-            z-index: 10; /* Di atas gambar background */
-            border-radius: var(--radius-xl);
-            box-shadow: var(--shadow-xl);
-            padding: 45px;
-            animation: slideUp 0.6s ease-out;
-            
-            /* Background putih sedikit transparan / blur untuk form box */
-            background: rgba(255, 255, 255, 0.92); 
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.6);
+        .sidebar-item {
+            margin-bottom: 12px;
         }
 
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .form-header {
-            text-align: center;
-            margin-bottom: 35px;
-        }
-
-        .form-header h2 {
-            font-family: 'Bricolage Grotesque', sans-serif;
-            color: var(--primary-dark);
-            font-weight: 700;
-            font-size: 2.2rem;
-            margin-bottom: 10px;
-        }
-
-        .form-header p {
-            color: var(--primary-light);
+        .sidebar-link {
+            display: flex;
+            align-items: center;
+            padding: 12px 20px;
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            gap: 12px;
+            transition: all 0.2s;
             font-size: 1rem;
-            font-weight: 500;
         }
 
-        .form-group {
-            margin-bottom: 25px;
+        .sidebar-link:hover, .sidebar-link.active {
+            background-color: rgba(255,255,255,0.1);
+            color: white;
+            border-left: 4px solid var(--primary-light, #889063);
+        }
+
+        .sidebar-user {
+            padding: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+
+        .sidebar-user .user-name {
+            display: block;
+            font-weight: 600;
+            color: #C2C7A9;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+
+        .btn-logout-sidebar {
+            color: #ff6b6b;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95rem;
+            transition: 0.2s;
+        }
+
+        .btn-logout-sidebar:hover {
+            color: #ff4c4c;
+            transform: translateX(3px);
+        }
+
+        /* --- MAIN CONTENT AREA --- */
+        .main-content {
+            margin-left: 280px;
+            width: calc(100% - 280px);
+            padding: 30px 40px;
+            transition: all 0.3s;
+        }
+
+        /* --- REFACTORED FORM CONTAINER (MATCHES DASHBOARD CARDS) --- */
+        .form-container {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+            border: 1px solid rgba(136, 144, 99, 0.15);
+            margin-top: 15px;
+        }
+
+        /* --- HEADINGS & LABELS --- */
+        .section-title {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary-dark, #354024);
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
         }
 
         .form-label {
             font-family: 'Bricolage Grotesque', sans-serif;
-            color: var(--primary-dark);
+            color: var(--primary-dark, #354024);
             font-weight: 600;
-            margin-bottom: 10px;
-            display: block;
+            margin-bottom: 8px;
             font-size: 0.95rem;
         }
 
         .form-control, .form-select {
-            border: 2px solid #e0e0e0;
-            border-radius: var(--radius-lg);
-            padding: 12px 15px;
+            border: 1px solid rgba(136, 144, 99, 0.25);
+            border-radius: 8px;
+            padding: 10px 14px;
             font-size: 0.95rem;
-            font-family: 'Inter', sans-serif;
-            transition: var(--transition-smooth);
-            background: #ffffff; /* Input solid */
+            transition: all 0.2s ease;
         }
 
         .form-control:focus, .form-select:focus {
-            background: var(--white);
-            border-color: var(--primary-light);
-            box-shadow: 0 0 0 4px rgba(136, 144, 99, 0.15);
+            border-color: var(--primary-light, #889063);
+            box-shadow: 0 0 0 3px rgba(136, 144, 99, 0.15);
             outline: none;
         }
 
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
-
-        @media (max-width: 600px) {
-            .form-row { grid-template-columns: 1fr; }
-            .form-container { padding: 30px 20px; }
-            .schedule-section { padding: 40px 15px; }
-        }
-
-        .form-text {
+        /* --- CUSTOM ALERT & INFO BOXES --- */
+        .weight-info {
+            background: rgba(136, 144, 99, 0.08);
+            border-left: 3px solid var(--primary-light, #889063);
+            padding: 8px 12px;
+            border-radius: 6px;
+            margin-top: 8px;
             font-size: 0.85rem;
-            color: #555;
-            margin-top: 6px;
-            font-weight: 500;
+            color: var(--primary-dark, #354024);
         }
 
-        /* --- Button Styles --- */
+        .info-box-custom {
+            background: #f9faf7;
+            border: 1px solid rgba(136, 144, 99, 0.12);
+            color: var(--primary-dark, #354024);
+            border-radius: 8px;
+            padding: 18px;
+            margin: 20px 0;
+        }
+
+        .info-box-custom ul {
+            margin: 8px 0 0 0;
+            padding-left: 20px;
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        /* --- BUTTONS --- */
         .btn-submit {
-            background: linear-gradient(135deg, var(--primary-dark) 0%, #2a3319 100%);
-            color: var(--white);
+            background: linear-gradient(135deg, var(--primary-dark, #354024) 0%, #2a3319 100%);
+            color: white;
             border: none;
-            border-radius: var(--radius-lg);
-            padding: 14px 30px;
-            font-weight: 700;
-            width: 100%;
-            font-size: 1rem;
-            font-family: 'Bricolage Grotesque', sans-serif;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            transition: var(--transition-smooth);
-            margin-top: 10px;
-            box-shadow: var(--shadow-md);
+            border-radius: 8px;
+            padding: 12px 24px;
+            font-weight: 600;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 6px rgba(53, 64, 36, 0.15);
         }
 
         .btn-submit:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 32px rgba(20, 26, 14, 0.15);
-            color: var(--white);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(53, 64, 36, 0.25);
         }
 
         .btn-cancel {
             background: transparent;
-            color: var(--primary-dark);
-            border: 2px solid var(--primary-light);
-            border-radius: var(--radius-lg);
-            padding: 12px 30px;
-            font-weight: 600;
-            width: 100%;
-            font-size: 1rem;
-            font-family: 'Bricolage Grotesque', sans-serif;
+            color: #354024;
+            border: 1px solid rgba(136, 144, 99, 0.5);
+            border-radius: 8px;
+            padding: 12px 24px;
+            font-weight: 500;
             text-align: center;
             text-decoration: none;
-            transition: var(--transition-smooth);
-            margin-top: 10px;
-            display: inline-block;
+            transition: all 0.2s ease;
         }
 
         .btn-cancel:hover {
-            background: rgba(136, 144, 99, 0.1);
-            color: var(--primary-dark);
-            border-color: var(--primary-dark);
-            text-decoration: none;
-        }
-
-        .form-buttons {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            margin-top: 25px;
-        }
-
-        /* --- Alert & Info Box Styles --- */
-        .alert {
-            border-radius: var(--radius-lg);
-            border: none;
-            margin-bottom: 25px;
-            padding: 15px 20px;
-        }
-
-        .weight-info {
-            background: rgba(230, 232, 219, 0.8);
-            border-left: 4px solid var(--primary-light);
-            padding: 12px 15px;
-            border-radius: 8px;
-            margin-top: 8px;
-            font-size: 0.85rem;
-            color: var(--primary-dark);
-            font-weight: 600;
-        }
-
-        .info-box-custom {
-            background: rgba(230, 232, 219, 0.8);
-            border: none;
-            color: var(--primary-dark);
-            border-radius: var(--radius-lg);
-            padding: 20px;
-        }
-
-        .info-box-custom strong {
-            font-family: 'Bricolage Grotesque', sans-serif;
+            background: rgba(136, 144, 99, 0.05);
+            border-color: #354024;
+            color: #354024;
         }
 
         .back-link {
-            display: inline-block;
-            margin-bottom: 25px;
-            color: var(--primary-dark);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--primary-light, #889063);
             text-decoration: none;
-            font-weight: 700;
-            transition: var(--transition-smooth);
-            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 15px;
+            transition: 0.2s;
         }
 
         .back-link:hover {
-            color: var(--primary-light);
-            transform: translateX(-5px);
+            color: var(--primary-dark, #354024);
+            transform: translateX(-3px);
         }
 
-        /* --- Footer Styles --- */
-        .dashboard-footer {
-            text-align: center;
-            padding: 25px 0;
-            background-color: #354024;
-            color: #ffffff;
-            font-size: 0.9rem;
-            margin-top: auto;
-            width: 100%;
-            position: relative; 
-            z-index: 10;
+        /* --- TOGGLE BUTTON FOR MOBILE --- */
+        .sidebar-toggle-btn {
+            display: none;
+            position: fixed;
+            top: 15px;
+            left: 15px;
+            z-index: 1050;
+            background-color: var(--primary-dark, #354024);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 6px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
         }
-        
-        .dashboard-footer p {
-            margin: 0;
+
+        .dashboard-footer {
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(136, 144, 99, 0.1);
+        }
+
+        /* --- MOBILE RESPONSIVE --- */
+        @media (max-width: 991px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+            .sidebar.active {
+                transform: translateX(0);
+            }
+            .main-content {
+                margin-left: 0;
+                width: 100%;
+                padding: 70px 15px 20px;
+            }
+            .sidebar-toggle-btn {
+                display: block;
+            }
         }
     </style>
 </head>
 <body>
-    <nav class="dashboard-navbar">
-        <div class="container-fluid">
-            <a href="dashboard_mitra.php" class="navbar-brand brand-text">
-                <span>pilah-pilih.</span>
-            </a>
-            <div class="navbar-user">
-                <span class="user-name"><i class="bi bi-person-circle"></i> <?php echo htmlspecialchars($_SESSION['company_name'] ?? 'Mitra'); ?></span>
-                <a href="logout.php" class="btn-logout"><i class="bi bi-box-arrow-right"></i> Logout</a>
-            </div>
-        </div>
-    </nav>
 
-    <section class="schedule-section">
-        <div class="form-container">
+    <button class="sidebar-toggle-btn" id="sidebarToggle">
+        <i class="bi bi-list"></i> Menu
+    </button>
+
+    <div class="page-wrapper">
+        <nav class="sidebar" id="sidebar">
+            <div>
+                <a href="dashboard_mitra.php" class="sidebar-brand">
+                    <span>pilah-pilih.</span>
+                </a>
+                <ul class="sidebar-menu">
+                    <li class="sidebar-item">
+                        <a href="dashboard_mitra.php" class="sidebar-link">
+                            <i class="bi bi-grid-1x2-fill"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="form_jemput.php" class="sidebar-link active">
+                            <i class="bi bi-calendar-plus"></i>
+                            <span>Jadwalkan Jemput</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="dashboard_mitra.php#history" class="sidebar-link">
+                            <i class="bi bi-clock-history"></i>
+                            <span>Riwayat</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="sidebar-user">
+                <span class="user-name" title="<?php echo htmlspecialchars($company_name); ?>">
+                    <i class="bi bi-person-circle me-1"></i> <?php echo htmlspecialchars($company_name); ?>
+                </span>
+                <a href="logout.php" class="btn-logout-sidebar">
+                    <i class="bi bi-box-arrow-right"></i> Keluar
+                </a>
+            </div>
+        </nav>
+
+        <main class="main-content">
+            
             <a href="dashboard_mitra.php" class="back-link">
                 <i class="bi bi-arrow-left"></i> Kembali ke Dashboard
             </a>
 
-            <div class="form-header">
-                <h2>Jadwalkan Jemput</h2>
-                <p>Buat permintaan pengangkutan sampah organik Anda</p>
+            <div class="row">
+                <div class="col-12">
+                    <h5 class="section-title"><i class="bi bi-calendar-plus-fill"></i> Jadwalkan Jemput</h5>
+                    <p class="text-muted small ms-4 ps-1">Buat permintaan pengangkutan baru untuk sampah organik Anda</p>
+                </div>
             </div>
 
-            <?php if (!empty($error)): ?>
-                <div class="alert alert-danger" role="alert">
-                    <i class="bi bi-exclamation-circle"></i> <?php echo $error; ?>
-                </div>
-            <?php endif; ?>
-
-            <?php if (!empty($success)): ?>
-                <div class="alert alert-success" role="alert" style="background-color: #d1e7dd; color: #0f5132;">
-                    <i class="bi bi-check-circle"></i> <?php echo $success; ?>
-                </div>
-            <?php endif; ?>
-
-            <form method="POST" action="" novalidate>
-                <input type="hidden" name="csrf_token" value="<?php echo $csrf_token; ?>">
-
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="pickup_date" class="form-label">Tanggal Jemput *</label>
-                        <input type="date" class="form-control" id="pickup_date" name="pickup_date" required>
-                        <small class="form-text">Pilih tanggal untuk pengangkutan</small>
+            <div class="form-container">
+                <?php if (!empty($error)): ?>
+                    <div class="alert alert-danger border-0 rounded-3 mb-4" role="alert">
+                        <i class="bi bi-exclamation-circle-fill me-2"></i> <?php echo $error; ?>
                     </div>
+                <?php endif; ?>
 
-                    <div class="form-group">
-                        <label for="pickup_time" class="form-label">Waktu Jemput *</label>
-                        <input type="time" class="form-control" id="pickup_time" name="pickup_time" required>
-                        <small class="form-text">Jam operasional: 07:00 - 17:00</small>
+                <?php if (!empty($success)): ?>
+                    <div class="alert alert-success border-0 rounded-3 mb-4" role="alert">
+                        <i class="bi bi-check-circle-fill me-2"></i> <?php echo $success; ?>
                     </div>
-                </div>
+                <?php endif; ?>
 
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="estimated_weight" class="form-label">Berat Perkiraan (kg) *</label>
-                        <input type="number" class="form-control" id="estimated_weight" name="estimated_weight" 
-                               step="0.1" min="0.1" max="10000" placeholder="100" required>
-                        <div class="weight-info">
-                            <i class="bi bi-info-circle"></i> Berat sampah organik yang akan diangkut
+                <form method="POST" action="" novalidate>
+                    <input type="hidden" name="csrf_token" value="<?php echo $csrf_token; ?>">
+
+                    <div class="row g-4">
+                        <div class="col-md-6">
+                            <label延 for="pickup_date" class="form-label">Tanggal Jemput *</label延>
+                            <input type="date" class="form-control" id="pickup_date" name="pickup_date" required>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="pickup_time" class="form-label">Waktu Jemput *</label>
+                            <input type="time" class="form-control" id="pickup_time" name="pickup_time" required>
+                            <div class="form-text text-muted small mt-1">Jam operasional: 07:00 - 17:00</div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="estimated_weight" class="form-label">Berat Perkiraan (kg) *</label>
+                            <input type="number" class="form-control" id="estimated_weight" name="estimated_weight" 
+                                   step="0.1" min="0.1" max="10000" placeholder="Contoh: 100" required>
+                            <div class="weight-info">
+                                <i class="bi bi-info-circle-fill me-1"></i> Estimasi total timbangan berat sampah organik.
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="waste_type" class="form-label">Jenis Sampah *</label>
+                            <select class="form-select" id="waste_type" name="waste_type" required>
+                                <option value="">-- Pilih Jenis Sampah --</option>
+                                <?php foreach ($waste_types as $type): ?>
+                                    <option value="<?php echo htmlspecialchars($type['name']); ?>">
+                                        <?php echo htmlspecialchars($type['name']); ?>
+                                    </option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+
+                        <div class="col-12">
+                            <label for="notes" class="form-label">Catatan Tambahan</label>
+                            <textarea class="form-control" id="notes" name="notes" rows="3" 
+                                      placeholder="Tulis instruksi khusus lokasi, kondisi sampah, atau info tambahan lainnya..."></textarea>
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <label for="waste_type" class="form-label">Jenis Sampah *</label>
-                        <select class="form-select" id="waste_type" name="waste_type" required>
-                            <option value="">-- Pilih Jenis Sampah --</option>
-                            <?php foreach ($waste_types as $type): ?>
-                                <option value="<?php echo htmlspecialchars($type['name']); ?>">
-                                    <?php echo htmlspecialchars($type['name']); ?>
-                                </option>
-                            <?php endforeach; ?>
-                        </select>
+                    <div class="info-box-custom">
+                        <span class="fw-bold text-dark"><i class="bi bi-info-circle-fill text-primary me-2"></i>Informasi Penting:</span>
+                        <ul>
+                            <li>Pastikan sampah organik telah dipisahkan dari material non-organik lainnya.</li>
+                            <li>Tempatkan sampah di area yang mudah diakses dan dijangkau oleh armada truk penjemputan.</li>
+                            <li>Tim kami akan melakukan konfirmasi jadwal kembali melalui WhatsApp dalam waktu maksimal 1 jam.</li>
+                        </ul>
                     </div>
-                </div>
 
-                <div class="form-group">
-                    <label for="notes" class="form-label">Catatan Tambahan</label>
-                    <textarea class="form-control" id="notes" name="notes" rows="4" 
-                              placeholder="Deskripsi kondisi sampah, lokasi khusus, atau informasi penting lainnya..."></textarea>
-                    <small class="form-text">Informasi ini membantu tim kami mempersiapkan pengangkutan dengan lebih baik</small>
-                </div>
+                    <div class="d-flex flex-wrap gap-2 mt-4">
+                        <button type="submit" class="btn btn-submit px-4">
+                            <i class="bi bi-check-lg me-1"></i> Jadwalkan Sekarang
+                        </button>
+                        <a href="dashboard_mitra.php" class="btn btn-cancel px-4">
+                            Batalkan
+                        </a>
+                    </div>
+                </form>
+            </div>
 
-                <div class="alert info-box-custom">
-                    <i class="bi bi-info-circle"></i> 
-                    <strong>Informasi Penting:</strong>
-                    <ul style="margin: 10px 0 0 0; padding-left: 20px; font-size: 0.9rem;">
-                        <li>Pastikan sampah organik telah dipisahkan dari material lain</li>
-                        <li>Tempatkan sampah di area yang mudah diakses oleh truk</li>
-                        <li>Kami akan konfirmasi jadwal melalui WhatsApp dalam 1 jam</li>
-                        <li>Jika terjadi perubahan, hubungi kami sebelum jam 14:00</li>
-                    </ul>
-                </div>
-
-                <div class="form-buttons">
-                    <button type="submit" class="btn-submit">
-                        <i class="bi bi-check-lg"></i> Jadwalkan Sekarang
-                    </button>
-                    <a href="dashboard_mitra.php" class="btn-cancel">
-                        <i class="bi bi-x-lg"></i> Batalkan
-                    </a>
-                </div>
-            </form>
-        </div>
-    </section>
-
-    <footer class="dashboard-footer">
-        <p>&copy; 2026 pilah-pilih. Logistik Sampah Organik. Semua Hak Dilindungi.</p>
-    </footer>
+            <footer class="dashboard-footer text-center py-4">
+                <p class="text-muted small mb-0">&copy; 2026 Pilah-Pilih. Logistik Sampah Organik. Semua Hak Dilindungi.</p>
+            </footer>
+        </main>
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
+        // Toggle Sidebar di Mobile
+        const sidebar = document.getElementById('sidebar');
+        const sidebarToggle = document.getElementById('sidebarToggle');
+        if (sidebarToggle && sidebar) {
+            sidebarToggle.addEventListener('click', function() {
+                sidebar.classList.toggle('active');
+            });
+        }
+
         // Set minimum date to today
         const dateInput = document.getElementById('pickup_date');
-        const today = new Date().toISOString().split('T')[0];
-        dateInput.setAttribute('min', today);
+        if (dateInput) {
+            const today = new Date().toISOString().split('T')[0];
+            dateInput.setAttribute('min', today);
+        }
 
         // Set default time to 08:00
-        document.getElementById('pickup_time').value = '08:00';
+        const timeInput = document.getElementById('pickup_time');
+        if (timeInput && !timeInput.value) {
+            timeInput.value = '08:00';
+        }
 
-        // Validate weight input
+        // Validate weight input maximum
         const weightInput = document.getElementById('estimated_weight');
-        weightInput.addEventListener('change', function() {
-            if (this.value > 10000) {
-                this.value = 10000;
-                alert('Berat maksimal adalah 10000 kg');
-            }
-        });
+        if (weightInput) {
+            weightInput.addEventListener('change', function() {
+                if (parseFloat(this.value) > 10000) {
+                    this.value = 10000;
+                    alert('Berat maksimal penjemputan tunggal adalah 10000 kg');
+                }
+            });
+        }
     </script>
 </body>
 </html>
