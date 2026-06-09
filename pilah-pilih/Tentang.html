@@ -1,0 +1,356 @@
+<!DOCTYPE html><html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tentang Kami - Pilah-Pilih</title>
+  <!-- CSS Bootstrap & Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <!-- Google Fonts import -->
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Share+Tech&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'cafe-noir': '#4c3d19',
+            'kombi': '#354024',
+            'moss': '#889063',
+            'tan-custom': '#cfbb88',
+            'bone': '#e5d7c4',
+            'white': '#ffffff',
+          },
+          fontFamily: {
+            'bricolage': ['Bricolage Grotesque', 'sans-serif'],
+            'sharetech': ['Share Tech', 'monospace'],
+            'playfair': ['Playfair Display', 'serif'],
+            'inter': ['Inter', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="Tentang.css">
+</head>
+<body class="overflow-x-hidden">
+ 
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container">
+      <a class="navbar-brand me-auto" href="Beranda.html">
+        <span class="brand-text">pilah-pilih.</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasNavbarLabel">pilah-pilih.</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+          <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+            <li class="nav-item">
+              <a class="nav-link mx-lg-2" href="Beranda.html">Beranda</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link mx-lg-2 active" aria-current="page" href="Tentang.html">Tentang</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link mx-lg-2" href="Mitra.html">Mitra</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link mx-lg-2" href="Layanan.html">Layanan</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link mx-lg-2" href="Formulir.php">Gabung Mitra</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link mx-lg-2" href="login.php">Login</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO VIDEO HEADER -->
+  <header class="video-header">
+    <div class="container">
+      <h1 class="main-title-video">Tentang Kami</h1>
+      <h5 class="tagline-video">Pilah Sampahnya, Pilih Solusinya, Pulih Nilainya</h5>
+    </div>
+  </header>
+
+  <!-- SIAPA KAMI -->
+  <main class="content-section">
+    <div class="container">
+      <div class="row g-5 align-items-center">
+        <div class="col-lg-6">
+          <h2 class="font-playfair text-4xl lg:text-5xl font-bold text-kombi mb-4">Siapa Kami</h2>
+          <p class="font-inter text-md text-cafe-noir leading-relaxed mb-4 text-justify">
+            Pilah-Pilih adalah perusahaan logistik sirkular modern yang didirikan atas dasar kesadaran luhur akan inefisiensi pengelolaan limbah industri. Kami tidak sekadar mengangkut sampah; kami merancang ulang arus material sisa menjadi sumber daya berkelanjutan yang bernilai tinggi dan kompetitif secara komersial.
+          </p>
+          <p class="font-inter text-md text-cafe-noir leading-relaxed mb-4 text-justify">
+            Kami berkomitmen penuh mempercepat transisi regional menuju model ekonomi sirkular dengan memastikan setiap kilogram material organik yang keluar dari fasilitas Anda memiliki jejak transparansi (traceability) yang jelas ke mitra pengolah akhir terverifikasi.
+          </p>
+          <a class="btn-commercial mt-3" href="Layanan.html">
+            <span>Telusuri Layanan Kami</span>
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </a>
+        </div>
+        <div class="col-lg-6">
+          <div class="row g-4">
+            <div class="col-12">
+              <div class="value-card">
+                <h4>Peluang Komersial</h4>
+                <p>Mengurangi biaya operasional pengelolaan limbah industri hingga 30% melalui efisiensi alur rute rintisan dan pemulihan nilai material organik (Material Recovery).</p>
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="value-card">
+                <h4>Standar ESG</h4>
+                <p>Mendukung pencapaian target Net-Zero perusahaan mitra dengan integrasi data analitik emisi karbon transparan yang siap digunakan untuk kebutuhan audit laporan tahunan.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <section class="metrics-section">
+    <div class="container pb-4">
+      <div class="text-center mb-5">
+        <h2 class="font-playfair text-3xl lg:text-4xl font-bold text-kombi">Integrasi Supply Chain 360°</h2>
+        <p class="font-inter text-cafe-noir opacity-75 mt-2">Layanan kami mencakup seluruh aspek sirkularitas material organik secara saksama.</p>
+      </div>
+      <div class="row text-center g-4">
+        <div class="col-md-4">
+          <h1 class="font-bricolage text-5xl lg:text-6xl font-extrabold text-kombi" style="color: var(--kombi);">85%</h1>
+          <p class="font-inter fw-bold mt-2 text-cafe-noir">Penyelamatan Material</p>
+          <p class="font-inter text-sm text-cafe-noir opacity-75 max-w-xs mx-auto mt-1">Rata-rata material yang berhasil kami putar kembali ke rantai produksi tanpa berakhir di Tempat Pembuangan Akhir.</p>
+        </div>
+        <div class="col-md-4">
+          <h1 class="font-bricolage text-5xl lg:text-6xl font-extrabold text-kombi" style="color: var(--kombi);">24/7</h1>
+          <p class="font-inter fw-bold mt-2 text-cafe-noir">Optimasi Rute</p>
+          <p class="font-inter text-sm text-cafe-noir opacity-75 max-w-xs mx-auto mt-1">Kami menggunakan algoritma pintar seiring mendukung efisiensi biaya logistik pengangkutan sisa komoditas.</p>
+        </div>
+        <div class="col-md-4">
+          <h1 class="font-bricolage text-5xl lg:text-6xl font-extrabold text-kombi" style="color: var(--kombi);">B2B</h1>
+          <p class="font-inter fw-bold mt-2 text-cafe-noir">Industrial Grade</p>
+          <p class="font-inter text-sm text-cafe-noir opacity-75 max-w-xs mx-auto mt-1">Solusi logistik yang dirancang khusus untuk skala pabrik, manufaktur, waralaba, dan ritel skala besar.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HISTORIES CAROUSEL -->
+  <section class="history-section">
+    <div class="container">
+      <div id="historyCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <!-- Slide 1 -->
+          <div class="carousel-item active">
+            <div class="carousel-item-inner">
+              <div class="history-year">2024</div>
+              <div class="row align-items-center">
+                <div class="col-lg-8 history-content">
+                  <h4>Awal Perjalanan</h4>
+                  <h2>PENDIDIKAN & INOVASI</h2>
+                  <p>Pilah-Pilih resmi didirikan di Surabaya sebagai startup mahasiswa Institut Teknologi Sepuluh Nopember (ITS) yang berfokus penuh pada digitalisasi rantai pasok sampah organik industri.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Slide 2 -->
+          <div class="carousel-item">
+            <div class="carousel-item-inner">
+              <div class="history-year">2025</div>
+              <div class="row align-items-center">
+                <div class="col-lg-8 history-content">
+                  <h4>Ekspansi Regional</h4>
+                  <h2>SCALE UP OPERASIONAL</h2>
+                  <p>Membuka 5 Hub penyaringan sortir utama di seluruh wilayah Jawa Timur dan mengonsolidasikan kemitraan strategis dengan lab lingkungan serta 50+ industri terkemuka.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Slide 3 -->
+          <div class="carousel-item">
+            <div class="carousel-item-inner">
+              <div class="history-year">2026</div>
+              <div class="row align-items-center">
+                <div class="col-lg-8 history-content">
+                  <h4>Masa Depan</h4>
+                  <h2>CIRCULAR INTEGRATOR</h2>
+                  <p>Meluncurkan modul platform SaaS untuk integrasi pelacakan jejak karbon real-time bagi korporat industri di seluruh wilayah Indonesia.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#historyCarousel" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#historyCarousel" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- MOTTO KAMI -->
+  <section class="motto-section">
+    <div class="motto-split">
+      <div class="motto-content">
+        <h2 class="font-playfair text-4xl font-bold mb-4 text-kombi">Motto Kami</h2>
+        <div class="motto-item mt-4">
+          <h3>Visi</h3>
+          <p>Menjadi pionir ekosistem logistik sirkular tepercaya serta standar baku baru yang berhasil mengubah residu limbah menjadi nilai ekonomi mapan dan berkelanjutan secara berkelanjutan.</p>
+        </div>
+        <div class="motto-item">
+          <h3>Misi</h3>
+          <p>Menyediakan infrastruktur pemilihan multimoda terjamin, pengumpulan saksama, dan kanal rute rintisan berbasis tuntutan pasar guna melayani mitra terkait secara prima.</p>
+        </div>
+        <div class="motto-item">
+          <h3>Nilai Kami</h3>
+          <p>Integritas tanpa batas, Kepedulian Lingkungan Berkelanjutan, Tanggung Jawab Sosial Nyata, dan Transparansi Data Komprehensif.</p>
+        </div>
+      </div>
+      <div class="motto-image">
+        <img src="./assets/traceability.jpg" alt="Operational Team">
+      </div>
+    </div>
+  </section>
+
+  <!-- CAKUPAN AREA LAYANAN -->
+  <section class="coverage-section">
+    <div class="container">
+      <h2 class="font-playfair text-4xl font-bold text-kombi mb-2 text-center text-uppercase">Cakupan Area Layanan</h2>
+      <p class="font-inter text-cafe-noir opacity-80 col-lg-8 mx-auto mt-2 text-center">Menjangkau kawasan industri utama regional serta mengonsolidasikan jalur sirkular yang terintegrasi penuh.</p>
+      
+      <div class="row stats-overlay g-4 mt-5">
+        <div class="col-md-3">
+          <div class="counter-card">
+            <h2><span class="counter" data-target="15">0</span>+</h2>
+            <p>Hub Sortir</p>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="counter-card">
+            <h2><span class="counter" data-target="500">0</span>+</h2>
+            <p>Titik Operasional</p>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="counter-card">
+            <h2><span class="counter" data-target="2000">0</span>+</h2>
+            <p>SDM Terlatih</p>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="counter-card">
+            <h2><span class="counter" data-target="1000">0</span>+</h2>
+            <p>Armada Logistik</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<!-- FOOTER -->
+  <footer class="footer-section">
+    <div class="container">
+      <!-- Menggunakan justify-content-center agar seluruh blok konten terpusat -->
+      <div class="row justify-content-center">
+        
+        <!-- Kolom Kontak: Diberi offset-lg-1 agar terdorong sedikit ke kanan dari batas kiri -->
+        <div class="col-lg-4 col-md-6 mb-4 mb-lg-0 offset-lg-1">
+          <h5 class="footer-logo mb-4">Pilah-Pilih.</h5>
+          <div id="Kontak" class="contact-info">
+            <p><i class="bi bi-geo-alt-fill"></i> Surabaya, Jawa Timur (ITS Area)</p>
+            <p><i class="bi bi-whatsapp"></i> +62 812-3456-7890</p>
+            <p><i class="bi bi-envelope-fill"></i> info@pilahpilih.com</p>
+            <p><i class="bi bi-instagram"></i> @pilah-pilih.</p>
+            <p><i class="bi bi-twitter-x"></i> @pilah-pilih.</p>
+          </div>
+        </div>
+
+        <!-- Kolom Layanan: Diperkecil menjadi col-lg-3 agar jarak antar kolom lebih rapat dan natural -->
+        <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+          <h5 class="footer-heading">Layanan</h5>
+          <ul class="footer-links">
+            <li><a href="Layanan.html">On-Demand Pick-Up</a></li>
+            <li><a href="Layanan.html">Smart Sorting Bin</a></li>
+            <li><a href="Layanan.html">Traceability Report</a></li>
+            <li><a href="Formulir.php">Circular Consultation</a></li>
+          </ul>
+        </div>
+
+        <!-- Kolom Navigasi: Diperkecil menjadi col-lg-3 -->
+        <div class="col-lg-3 col-md-12">
+          <h5 class="footer-heading">Navigasi</h5>
+          <ul class="footer-links">
+            <li><a href="Tentang.html">Tentang Kami</a></li>
+            <li><a href="Formulir.php">Klien Portal</a></li>
+            <li><a href="Mitra.html">Mitra Kami</a></li>
+            <li><a href="#Kontak">Kontak Kami</a></li>
+          </ul>
+        </div>
+        
+      </div>
+      
+      <div class="footer-bottom mt-5 pt-4">
+        <p>© 2026 pilah-pilih. Logistik Sampah Organik. Semua Hak Dilindungi.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="animations.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      if (typeof lucide !== 'undefined') {
+        lucide.createIcons();
+      }
+
+      // Intersection Observer counter logic
+      const runCounter = () => {
+        const counters = document.querySelectorAll('.counter');
+        counters.forEach(counter => {
+          counter.innerText = '0';
+          const target = +counter.getAttribute('data-target');
+          const increment = target / 50; // faster animation
+          const updateCount = () => {
+            const count = +counter.innerText;
+            if (count < target) {
+              counter.innerText = Math.ceil(count + increment);
+              setTimeout(updateCount, 15);
+            } else {
+              counter.innerText = target.toLocaleString('id-ID');
+            }
+          };
+          updateCount();
+        });
+      };
+
+      const sectionObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            runCounter();
+            sectionObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.2 });
+
+      const targetSection = document.querySelector('.coverage-section');
+      if (targetSection) {
+        sectionObserver.observe(targetSection);
+      }
+    });
+  </script>
+</body>
+</html>

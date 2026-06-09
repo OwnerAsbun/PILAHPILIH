@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>pilah-pilih. | Layanan</title>
+  <!-- CSS Bootstrap & Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <!-- Google Fonts import -->
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Share+Tech&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'cafe-noir': '#4c3d19',
+            'kombi': '#354024',
+            'moss': '#889063',
+            'tan-custom': '#cfbb88',
+            'bone': '#e5d7c4',
+            'kombi-dark': '#2a3319',
+          },
+          fontFamily: {
+            'bricolage': ['Bricolage Grotesque', 'sans-serif'],
+            'sharetech': ['Share Tech', 'monospace'],
+            'playfair': ['Playfair Display', 'serif'],
+            'inter': ['Inter', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="Layanan.css">
+</head>
+<body class="overflow-x-hidden">
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container">
+      <a class="navbar-brand me-auto" href="Beranda.html">
+        <span class="brand-text">pilah-pilih.</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasNavbarLabel">pilah-pilih.</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+          <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+            <li class="nav-item">
+              <a class="nav-link mx-lg-2" href="Beranda.html">Beranda</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link mx-lg-2" href="Tentang.html">Tentang</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link mx-lg-2" href="Mitra.html">Mitra</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link mx-lg-2 active" aria-current="page" href="Layanan.html">Layanan</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link mx-lg-2" href="Formulir.php">Gabung Mitra</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link mx-lg-2" href="login.php">Login</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- PAGE INDICATOR -->
+  <div class="page-indicator fixed-top mt-24 z-40">
+    <div class="container">
+      <div class="flex items-center justify-center gap-3">
+        <button class="indicator-dot active" data-page="0" onclick="goToPage(0)">
+          <span class="dot-label">On-Demand</span>
+        </button>
+        <div class="indicator-line"></div>
+        <button class="indicator-dot" data-page="1" onclick="goToPage(1)">
+          <span class="dot-label">Smart Sorting</span>
+        </button>
+        <div class="indicator-line"></div>
+        <button class="indicator-dot" data-page="2" onclick="goToPage(2)">
+          <span class="dot-label">Traceability</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN SLIDER CONTAINER -->
+  <div class="slider-wrapper" id="sliderWrapper">
+    <!-- ===================== PAGE 1: ON-DEMAND ===================== -->
+    <section class="service-page" id="page0">
+      <!-- Hero Section -->
+      <div class="hero-section hero-ondemand">
+        <div class="hero-curve"></div>
+        <div class="container position-relative z-10">
+          <div class="row align-items-center min-h-screen-80">
+            <div class="col-lg-7">
+              <div class="hero-badge">
+                <i data-lucide="truck" class="w-4 h-4"></i>
+                <span>Layanan 01</span>
+              </div>
+              <h1 class="hero-title">
+                ON-DEMAND<br>
+                <span class="hero-title-accent">INDUSTRIAL</span><br>
+                PICK-UP
+              </h1>
+              <p class="hero-subtitle">Limbah industri Anda, tanggung jawab kami. Penjemputan cepat, pelaporan akurat, kepatuhan terjamin.</p>
+              <a href="#features-ondemand" class="hero-cta">
+                <span>Jelajahi Layanan</span>
+                <i data-lucide="arrow-down-right" class="w-5 h-5"></i>
+              </a>
+            </div>
+            <div class="col-lg-5 d-none d-lg-block">
+              <div class="hero-image-stack">
+                <div class="hero-img-card img-back">
+                  <img src="https://images.unsplash.com/photo-1530587191325-3db32d826c18?auto=format&fit=crop&q=80&w=600" alt="Industrial" class="rounded-3xl">
+                </div>
+                <div class="hero-img-card img-front">
+                  <img src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&q=80&w=600" alt="Pick-up" class="rounded-3xl">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Features Grid -->
+      <div id="features-ondemand" class="features-section">
+        <div class="container">
+          <div class="section-label">
+            <span class="label-line"></span>
+            <span class="label-text">Keunggulan Utama</span>
+          </div>
+          <h2 class="section-title">Mengapa On-Demand Pick-Up?</h2>
+          <div class="row g-4 mt-2">
+            <div class="col-md-6 col-lg-3">
+              <div class="feature-card">
+                <div class="feature-icon-wrap icon-bolt">
+                  <i data-lucide="zap" class="w-7 h-7"></i>
+                </div>
+                <h4 class="feature-title">Instant Dispatch</h4>
+                <p class="feature-desc">Penjemputan dalam 24 jam setelah pesanan dikonfirmasi.</p>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+              <div class="feature-card">
+                <div class="feature-icon-wrap icon-eye">
+                  <i data-lucide="smartphone" class="w-7 h-7"></i>
+                </div>
+                <h4 class="feature-title">Digital Tracking</h4>
+                <p class="feature-desc">Lacak perjalanan limbah Anda secara real-time dari ponsel.</p>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+              <div class="feature-card">
+                <div class="feature-icon-wrap icon-scale">
+                  <i data-lucide="scale" class="w-7 h-7"></i>
+                </div>
+                <h4 class="feature-title">Precise Weighing</h4>
+                <p class="feature-desc">Akurasi timbangan di tempat untuk transparansi data aset Anda.</p>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+              <div class="feature-card">
+                <div class="feature-icon-wrap icon-leaf">
+                  <i data-lucide="shield-check" class="w-7 h-7"></i>
+                </div>
+                <h4 class="feature-title">Eco-Compliance</h4>
+                <p class="feature-desc">Dokumen pelaporan resmi untuk audit lingkungan perusahaan.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Operational Highlights List -->
+      <div class="highlights-section">
+        <div class="container">
+          <div class="section-label">
+            <span class="label-line"></span>
+            <span class="label-text">Operational Highlights</span>
+          </div>
+          <h2 class="section-title">Full service details for industrial and corporate partners.</h2>
+          <div class="highlights-list mt-5">
+            <div class="highlight-row">
+              <div class="highlight-img">
+                <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=300" alt="Fleet" class="rounded-2xl">
+              </div>
+              <div class="highlight-content">
+                <span class="highlight-category">Armada</span>
+                <h5 class="highlight-name">Specialized Fleet</h5>
+                <p class="highlight-desc">Pilihan armada mulai dari motor listrik hingga truk engkel, siap menjangkau lokasi tersulit sekalipun.</p>
+              </div>
+            </div>
+            <div class="highlight-row">
+              <div class="highlight-img">
+                <img src="https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?auto=format&fit=crop&q=80&w=300" alt="Sorting" class="rounded-2xl">
+              </div>
+              <div class="highlight-content">
+                <span class="highlight-category">Integritas</span>
+                <h5 class="highlight-name">Integrity Sorting</h5>
+                <p class="highlight-desc">Penggunaan wadah kompartemen standar industri untuk menjamin limbah tetap murni dan tidak terkontaminasi.</p>
+              </div>
+            </div>
+            <div class="highlight-row">
+              <div class="highlight-img">
+                <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80&w=300" alt="Reporting" class="rounded-2xl">
+              </div>
+              <div class="highlight-content">
+                <span class="highlight-category">Pelaporan</span>
+                <h5 class="highlight-name">Asset Reporting</h5>
+                <p class="highlight-desc">Akses laporan audit limbah dan sertifikat keberlanjutan melalui portal klien kami.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CTA Selection Cards -->
+      <div class="cta-section">
+        <div class="container">
+          <div class="row g-4">
+            <div class="col-md-6">
+              <div class="cta-card cta-card-light">
+                <div class="cta-card-icon">
+                  <i data-lucide="phone-call" class="w-8 h-8"></i>
+                </div>
+                <h4 class="cta-card-title">Jadwalkan Penjemputan</h4>
+                <p class="cta-card-desc">Hubungi tim kami untuk penjemputan limbah industri on-demand.</p>
+                <a href="Formulir.php" class="cta-card-btn">Hubungi Kami <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="cta-card cta-card-dark">
+                <div class="cta-card-icon">
+                  <i data-lucide="file-text" class="w-8 h-8"></i>
+                </div>
+                <h4 class="cta-card-title">Portal Klien</h4>
+                <p class="cta-card-desc">Akses dashboard, laporan audit, dan sertifikat keberlanjutan Anda.</p>
+                <a href="Formulir.php" class="cta-card-btn btn-light">Masuk Portal <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== PAGE 2: SMART SORTING BIN ===================== -->
+    <section class="service-page" id="page1">
+      <!-- Hero Section -->
+      <div class="hero-section hero-sorting">
+        <div class="hero-curve hero-curve-moss"></div>
+        <div class="container position-relative z-10">
+          <div class="row align-items-center min-h-screen-80">
+            <div class="col-lg-7">
+              <div class="hero-badge badge-moss">
+                <i data-lucide="box" class="w-4 h-4"></i>
+                <span>Layanan 02</span>
+              </div>
+              <h1 class="hero-title">
+                SMART SORTING<br>
+                <span class="hero-title-accent">BIN &</span><br>
+                PACKAGING
+              </h1>
+              <p class="hero-subtitle">Penyediaan wadah standar industri. Menjamin sampah bebas kontaminasi selama perjalanan.</p>
+              <a href="#features-sorting" class="hero-cta cta-moss">
+                <span>Jelajahi Layanan</span>
+                <i data-lucide="arrow-down-right" class="w-5 h-5"></i>
+              </a>
+            </div>
+            <div class="col-lg-5 d-none d-lg-block">
+              <div class="hero-image-stack">
+                <div class="hero-img-card img-back">
+                  <img src="https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?auto=format&fit=crop&q=80&w=600" alt="Sorting" class="rounded-3xl">
+                </div>
+                <div class="hero-img-card img-front">
+                  <img src="https://images.unsplash.com/photo-1605647540924-852290f6b0d5?auto=format&fit=crop&q=80&w=600" alt="Bins" class="rounded-3xl">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Features Grid -->
+      <div id="features-sorting" class="features-section">
+        <div class="container">
+          <div class="section-label">
+            <span class="label-line line-moss"></span>
+            <span class="label-text text-moss">Keunggulan Utama</span>
+          </div>
+          <h2 class="section-title">Mengapa Smart Sorting Bin?</h2>
+          <div class="row g-4 mt-2">
+            <div class="col-md-6 col-lg-3">
+              <div class="feature-card card-moss-border">
+                <div class="feature-icon-wrap icon-dual">
+                  <i data-lucide="columns-2" class="w-7 h-7"></i>
+                </div>
+                <h4 class="feature-title">Dual-Compartment</h4>
+                <p class="feature-desc">Pemisahan instan antara limbah organik dan anorganik dalam satu wadah.</p>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+              <div class="feature-card card-moss-border">
+                <div class="feature-icon-wrap icon-shield">
+                  <i data-lucide="shield" class="w-7 h-7"></i>
+                </div>
+                <h4 class="feature-title">Anti-Contamination</h4>
+                <p class="feature-desc">Desain kedap udara untuk mencegah kebocoran aroma dan menjaga kebersihan area industri.</p>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+              <div class="feature-card card-moss-border">
+                <div class="feature-icon-wrap icon-iot">
+                  <i data-lucide="wifi" class="w-7 h-7"></i>
+                </div>
+                <h4 class="feature-title">IoT Integrated</h4>
+                <p class="feature-desc">Sensor berat opsional yang memberi sinyal otomatis jika wadah hampir penuh.</p>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+              <div class="feature-card card-moss-border">
+                <div class="feature-icon-wrap icon-industrial">
+                  <i data-lucide="hard-hat" class="w-7 h-7"></i>
+                </div>
+                <h4 class="feature-title">Industrial Grade</h4>
+                <p class="feature-desc">Material tahan lama yang didesain untuk penggunaan berat di gudang maupun pabrik.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sorting Highlights List -->
+      <div class="highlights-section">
+        <div class="container">
+          <div class="section-label">
+            <span class="label-line line-moss"></span>
+            <span class="label-text text-moss">Sorting Highlights</span>
+          </div>
+          <h2 class="section-title">Desain modular untuk fleksibilitas industri Anda.</h2>
+          <div class="highlights-list mt-5">
+            <div class="highlight-row">
+              <div class="highlight-img">
+                <img src="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&q=80&w=300" alt="Modular" class="rounded-2xl">
+              </div>
+              <div class="highlight-content">
+                <span class="highlight-category cat-moss">Desain</span>
+                <h5 class="highlight-name">Modular Design</h5>
+                <p class="highlight-desc">Wadah fleksibel yang dapat disesuaikan dengan kapasitas produksi limbah harian perusahaan Anda.</p>
+              </div>
+            </div>
+            <div class="highlight-row">
+              <div class="highlight-img">
+                <img src="https://images.unsplash.com/photo-1595246140625-573b715d11dc?auto=format&fit=crop&q=80&w=300" alt="Sorting" class="rounded-2xl">
+              </div>
+              <div class="highlight-content">
+                <span class="highlight-category cat-moss">Pemilahan</span>
+                <h5 class="highlight-name">Source Separation</h5>
+                <p class="highlight-desc">Memastikan setiap gram limbah dipilah dengan benar sejak awal guna meningkatkan nilai ekonomi material.</p>
+              </div>
+            </div>
+            <div class="highlight-row">
+              <div class="highlight-img">
+                <img src="https://images.unsplash.com/photo-1580674684081-7617fbf3d745?auto=format&fit=crop&q=80&w=300" alt="Logistics" class="rounded-2xl">
+              </div>
+              <div class="highlight-content">
+                <span class="highlight-category cat-moss">Logistik</span>
+                <h5 class="highlight-name">Clean Logistics</h5>
+                <p class="highlight-desc">Solusi penyimpanan sementara yang estetis, menjaga area kerja tetap profesional dan bebas bau.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CTA Selection Cards -->
+      <div class="cta-section">
+        <div class="container">
+          <div class="row g-4">
+            <div class="col-md-6">
+              <div class="cta-card cta-card-moss">
+                <div class="cta-card-icon">
+                  <i data-lucide="package" class="w-8 h-8"></i>
+                </div>
+                <h4 class="cta-card-title">Pesan Sorting Bin</h4>
+                <p class="cta-card-desc">Dapatkan wadah pemilahan pintar untuk fasilitas industri Anda.</p>
+                <a href="Formulir.php" class="cta-card-btn btn-light">Pesan Sekarang <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="cta-card cta-card-light">
+                <div class="cta-card-icon icon-kombi">
+                  <i data-lucide="settings" class="w-8 h-8"></i>
+                </div>
+                <h4 class="cta-card-title">Kustomisasi Wadah</h4>
+                <p class="cta-card-desc">Sesuaikan kapasitas dan kompartemen dengan kebutuhan spesifik pabrik Anda.</p>
+                <a href="Formulir.php" class="cta-card-btn">Konsultasi Gratis <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== PAGE 3: TRACEABILITY ===================== -->
+    <section class="service-page" id="page2">
+      <!-- Hero Section -->
+      <div class="hero-section hero-trace">
+        <div class="hero-curve hero-curve-tan"></div>
+        <div class="container position-relative z-10">
+          <div class="row align-items-center min-h-screen-80">
+            <div class="col-lg-7">
+              <div class="hero-badge badge-tan">
+                <i data-lucide="file-check-2" class="w-4 h-4"></i>
+                <span>Layanan 03</span>
+              </div>
+              <h1 class="hero-title">
+                TRACEABILITY<br>
+                <span class="hero-title-accent">REPORT &</span><br>
+                IMPACT
+              </h1>
+              <p class="hero-subtitle">Kejelasan dari hulu ke hilir. Data transparan, sertifikat resmi, dan audit lingkungan terverifikasi.</p>
+              <a href="#features-trace" class="hero-cta cta-tan">
+                <span>Jelajahi Layanan</span>
+                <i data-lucide="arrow-down-right" class="w-5 h-5"></i>
+              </a>
+            </div>
+            <div class="col-lg-5 d-none d-lg-block">
+              <div class="hero-image-stack">
+                <div class="hero-img-card img-back">
+                  <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80&w=600" alt="Report" class="rounded-3xl">
+                </div>
+                <div class="hero-img-card img-front">
+                  <img src="https://images.unsplash.com/photo-1543269865-cbf427effbad?auto=format&fit=crop&q=80&w=600" alt="Certificate" class="rounded-3xl">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Features Grid -->
+      <div id="features-trace" class="features-section">
+        <div class="container">
+          <div class="section-label">
+            <span class="label-line line-tan"></span>
+            <span class="label-text text-tan-dark">Keunggulan Utama</span>
+          </div>
+          <h2 class="section-title">Mengapa Traceability Report?</h2>
+          <div class="row g-4 mt-2">
+            <div class="col-md-6 col-lg-3">
+              <div class="feature-card card-tan-border">
+                <div class="feature-icon-wrap icon-cert">
+                  <i data-lucide="badge-check" class="w-7 h-7"></i>
+                </div>
+                <h4 class="feature-title">Certified Audit</h4>
+                <p class="feature-desc">Laporan resmi yang memenuhi standar pelaporan lingkungan industri.</p>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+              <div class="feature-card card-tan-border">
+                <div class="feature-icon-wrap icon-chart">
+                  <i data-lucide="bar-chart-3" class="w-7 h-7"></i>
+                </div>
+                <h4 class="feature-title">Real-time Data</h4>
+                <p class="feature-desc">Pantau grafik penurunan emisi karbon perusahaan Anda secara langsung.</p>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+              <div class="feature-card card-tan-border">
+                <div class="feature-icon-wrap icon-lock">
+                  <i data-lucide="lock" class="w-7 h-7"></i>
+                </div>
+                <h4 class="feature-title">Secure Access</h4>
+                <p class="feature-desc">Data eksklusif yang hanya bisa diakses oleh akun resmi perusahaan Anda.</p>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+              <div class="feature-card card-tan-border">
+                <div class="feature-icon-wrap icon-path">
+                  <i data-lucide="route" class="w-7 h-7"></i>
+                </div>
+                <h4 class="feature-title">End-to-End Path</h4>
+                <p class="feature-desc">Lacak titik hulu (pabrik Anda) hingga ke hilir (pabrik pengolah akhir).</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Transparency Highlights List -->
+      <div class="highlights-section">
+        <div class="container">
+          <div class="section-label">
+            <span class="label-line line-tan"></span>
+            <span class="label-text text-tan-dark">Transparency Highlights</span>
+          </div>
+          <h2 class="section-title">Visibilitas penuh atas perjalanan limbah Anda.</h2>
+          <div class="highlights-list mt-5">
+            <div class="highlight-row">
+              <div class="highlight-img">
+                <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&q=80&w=300" alt="Portal" class="rounded-2xl">
+              </div>
+              <div class="highlight-content">
+                <span class="highlight-category cat-tan">Akses</span>
+                <h5 class="highlight-name">Client Portal</h5>
+                <p class="highlight-desc">Akses satu pintu untuk mengunduh riwayat logistik dan manifes limbah digital kapan pun dibutuhkan.</p>
+              </div>
+            </div>
+            <div class="highlight-row">
+              <div class="highlight-img">
+                <img src="https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?auto=format&fit=crop&q=80&w=300" alt="Metrics" class="rounded-2xl">
+              </div>
+              <div class="highlight-content">
+                <span class="highlight-category cat-tan">Data</span>
+                <h5 class="highlight-name">Impact Metrics</h5>
+                <p class="highlight-desc">Visualisasi data penghematan energi dan pengurangan emisi karbon dari limbah yang berhasil kami olah.</p>
+              </div>
+            </div>
+            <div class="highlight-row">
+              <div class="highlight-img">
+                <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80&w=300" alt="Certificate" class="rounded-2xl">
+              </div>
+              <div class="highlight-content">
+                <span class="highlight-category cat-tan">Sertifikasi</span>
+                <h5 class="highlight-name">Green Certificate</h5>
+                <p class="highlight-desc">Sertifikat apresiasi keberlanjutan yang dapat digunakan sebagai bukti komitmen hijau perusahaan di hadapan publik.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CTA Selection Cards -->
+      <div class="cta-section">
+        <div class="container">
+          <div class="row g-4">
+            <div class="col-md-6">
+              <div class="cta-card cta-card-tan-accent">
+                <div class="cta-card-icon">
+                  <i data-lucide="award" class="w-8 h-8"></i>
+                </div>
+                <h4 class="cta-card-title">Dapatkan Sertifikat</h4>
+                <p class="cta-card-desc">Buktikan komitmen hijau perusahaan Anda dengan sertifikat keberlanjutan resmi.</p>
+                <a href="Formulir.php" class="cta-card-btn">Mulai Sekarang <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="cta-card cta-card-dark-tan">
+                <div class="cta-card-icon">
+                  <i data-lucide="layout-dashboard" class="w-8 h-8"></i>
+                </div>
+                <h4 class="cta-card-title">Dashboard Audit</h4>
+                <p class="cta-card-desc">Pantau seluruh aktivitas limbah perusahaan dalam satu dashboard terpadu.</p>
+                <a href="Formulir.php" class="cta-card-btn btn-light">Akses Dashboard <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- NAVIGATION ARROWS (Fixed) -->
+  <button class="nav-arrow nav-arrow-left" id="navLeft" onclick="prevPage()">
+    <i data-lucide="chevron-left" class="w-6 h-6"></i>
+  </button>
+  <button class="nav-arrow nav-arrow-right" id="navRight" onclick="nextPage()">
+    <i data-lucide="chevron-right" class="w-6 h-6"></i>
+  </button>
+
+<!-- FOOTER -->
+  <footer class="footer-section">
+    <div class="container">
+      <!-- Menggunakan justify-content-center agar seluruh blok konten terpusat -->
+      <div class="row justify-content-center">
+        
+        <!-- Kolom Kontak: Diberi offset-lg-1 agar terdorong sedikit ke kanan dari batas kiri -->
+        <div class="col-lg-4 col-md-6 mb-4 mb-lg-0 offset-lg-1">
+          <h5 class="footer-logo mb-4">Pilah-Pilih.</h5>
+          <div id="Kontak" class="contact-info">
+            <p><i class="bi bi-geo-alt-fill"></i> Surabaya, Jawa Timur (ITS Area)</p>
+            <p><i class="bi bi-whatsapp"></i> +62 812-3456-7890</p>
+            <p><i class="bi bi-envelope-fill"></i> info@pilahpilih.com</p>
+            <p><i class="bi bi-instagram"></i> @pilah-pilih.</p>
+            <p><i class="bi bi-twitter-x"></i> @pilah-pilih.</p>
+          </div>
+        </div>
+
+        <!-- Kolom Layanan: Diperkecil menjadi col-lg-3 agar jarak antar kolom lebih rapat dan natural -->
+        <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+          <h5 class="footer-heading">Layanan</h5>
+          <ul class="footer-links">
+            <li><a href="Layanan.html">On-Demand Pick-Up</a></li>
+            <li><a href="Layanan.html">Smart Sorting Bin</a></li>
+            <li><a href="Layanan.html">Traceability Report</a></li>
+            <li><a href="Formulir.php">Circular Consultation</a></li>
+          </ul>
+        </div>
+
+        <!-- Kolom Navigasi: Diperkecil menjadi col-lg-3 -->
+        <div class="col-lg-3 col-md-12">
+          <h5 class="footer-heading">Navigasi</h5>
+          <ul class="footer-links">
+            <li><a href="Tentang.html">Tentang Kami</a></li>
+            <li><a href="Formulir.php">Klien Portal</a></li>
+            <li><a href="Mitra.html">Mitra Kami</a></li>
+            <li><a href="login.php">Login</a></li>
+          </ul>
+        </div>
+        
+      </div>
+      
+      <div class="footer-bottom mt-5 pt-4">
+        <p>© 2026 pilah-pilih. Logistik Sampah Organik. Semua Hak Dilindungi.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="animations.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

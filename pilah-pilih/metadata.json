@@ -1,0 +1,6 @@
+{
+  "name": "Pilah-Pilih",
+  "description": "Pilah-Pilih - Platform Logistik Sampah Organik dan Solusi Circular Economy Berkelanjutan",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
