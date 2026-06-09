@@ -174,7 +174,7 @@ function get_status_progress($status) {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400..800;1,400..800&family=Share+Tech&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400..800;1,400..80[...]
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link href="Mitra.css" rel="stylesheet">
     
@@ -329,6 +329,109 @@ body {
     padding: 8px 15px;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+/* --- AKSI CEPAT BUTTONS (NEW MODERN STYLING) --- */
+.action-buttons {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+}
+
+.action-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px 24px;
+    border-radius: 12px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-family: 'Inter', sans-serif;
+    flex: 1;
+    min-width: 280px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.action-btn i {
+    font-size: 28px;
+    flex-shrink: 0;
+    transition: all 0.3s ease;
+}
+
+.action-btn span {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.action-btn strong {
+    font-size: 1rem;
+    font-weight: 600;
+    display: block;
+}
+
+.action-btn small {
+    font-size: 0.85rem;
+    opacity: 0.8;
+    display: block;
+}
+
+/* Primary Action Button (Jadwalkan Jemput) */
+.action-btn-primary {
+    background: linear-gradient(135deg, #354024 0%, #2a3319 100%);
+    color: white;
+}
+
+.action-btn-primary:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(53, 64, 36, 0.25);
+}
+
+.action-btn-primary:hover i {
+    transform: scale(1.1);
+}
+
+.action-btn-primary:active {
+    transform: translateY(-2px);
+}
+
+/* Tertiary Action Button (Lihat Riwayat) */
+.action-btn-tertiary {
+    background: #f5f5f1;
+    color: #354024;
+    border: 2px solid #e0dcd5;
+}
+
+.action-btn-tertiary:hover {
+    background: white;
+    border-color: #889063;
+    color: #889063;
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(136, 144, 99, 0.2);
+}
+
+.action-btn-tertiary:hover i {
+    color: #889063;
+    transform: scale(1.1);
+}
+
+.action-btn-tertiary:active {
+    transform: translateY(-2px);
+}
+
+/* Responsivitas untuk mobile */
+@media (max-width: 768px) {
+    .action-btn {
+        min-width: 100%;
+        flex: none;
+    }
+
+    .action-buttons {
+        flex-direction: column;
+    }
 }
 
 /* --- RESPONSIVITAS (AGAR TIDAK HANCUR DI HP) --- */
@@ -561,6 +664,226 @@ body {
             padding: 10px 15px;
             border-radius: var(--radius-sm);
         }
+
+        /* Section Title Styling */
+        .section-title {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-title i {
+            font-size: 1.5rem;
+        }
+
+        /* Status Badge Styling */
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: white;
+        }
+
+        .status-badge i {
+            font-size: 0.9rem;
+        }
+
+        /* Timeline Card */
+        .timeline-card {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+            border: 1px solid rgba(136, 144, 99, 0.15);
+        }
+
+        .timeline-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .timeline-header h6 {
+            margin: 0;
+            color: var(--primary-dark);
+            font-weight: 600;
+        }
+
+        .timeline-date {
+            color: #999;
+            font-size: 0.9rem;
+        }
+
+        .progress-bar-container {
+            margin-bottom: 24px;
+        }
+
+        .progress-bar-background {
+            background: #e8eae4;
+            height: 6px;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .progress-bar-fill {
+            background: linear-gradient(90deg, #354024 0%, #889063 100%);
+            height: 100%;
+            border-radius: 3px;
+            transition: width 0.4s ease;
+        }
+
+        .timeline-steps {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 24px;
+        }
+
+        .step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .step-circle {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #e8eae4;
+            color: #999;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .step.active .step-circle {
+            background: linear-gradient(135deg, #354024 0%, #889063 100%);
+            color: white;
+        }
+
+        .step-label {
+            font-size: 0.8rem;
+            color: #666;
+            text-align: center;
+            margin: 0;
+        }
+
+        .timeline-details {
+            background: #f9faf7;
+            padding: 16px;
+            border-radius: 8px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+        }
+
+        .detail-item {
+            font-size: 0.9rem;
+            color: var(--primary-dark);
+        }
+
+        .detail-item strong {
+            display: block;
+            margin-bottom: 4px;
+            font-weight: 600;
+        }
+
+        /* Impact Cards */
+        .impact-card {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+            border: 1px solid rgba(136, 144, 99, 0.15);
+            display: flex;
+            gap: 16px;
+        }
+
+        .impact-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            flex-shrink: 0;
+        }
+
+        .impact-card-carbon .impact-icon {
+            background: rgba(100, 150, 200, 0.15);
+            color: #6496c8;
+        }
+
+        .impact-card-compost .impact-icon {
+            background: rgba(76, 175, 80, 0.15);
+            color: #4caf50;
+        }
+
+        .impact-content h6 {
+            margin: 0 0 8px 0;
+            color: var(--primary-dark);
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        .impact-number {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin: 4px 0;
+        }
+
+        .impact-unit {
+            font-size: 0.85rem;
+            color: #666;
+            margin: 0;
+        }
+
+        .impact-info {
+            font-size: 0.8rem;
+            color: #999;
+            margin-top: 4px;
+        }
+
+        /* Button Detail */
+        .btn-detail {
+            background: transparent;
+            border: 1px solid #889063;
+            color: #889063;
+            padding: 6px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .btn-detail:hover {
+            background: #889063;
+            color: white;
+        }
+
+        /* Dashboard Footer */
+        .dashboard-footer {
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(136, 144, 99, 0.1);
+        }
     </style>
 </head>
 <body>
@@ -627,19 +950,19 @@ body {
             </div>
             <?php endif; ?>
 
-            <!-- Aksi Cepat Section -->
+            <!-- Aksi Cepat Section (REFACTORED) -->
             <div class="row mb-4">
                 <div class="col-12">
-                    <h5 class="section-title mb-3"><i class="bi bi-lightning-charge-fill"></i> Aksi Cepat</h5>
-                    <div class="action-buttons d-flex gap-3 flex-wrap">
-                        <a href="form_jemput.php" class="action-btn action-btn-primary flex-fill">
+                    <h5 class="section-title"><i class="bi bi-lightning-charge-fill"></i> Aksi Cepat</h5>
+                    <div class="action-buttons">
+                        <a href="form_jemput.php" class="action-btn action-btn-primary">
                             <i class="bi bi-calendar-plus"></i>
                             <span>
                                 <strong>Jadwalkan Jemput</strong>
                                 <small>Buat permintaan pengangkutan baru</small>
                             </span>
                         </a>
-                        <a href="#history" class="action-btn action-btn-tertiary flex-fill">
+                        <a href="#history" class="action-btn action-btn-tertiary">
                             <i class="bi bi-file-text"></i>
                             <span>
                                 <strong>Lihat Riwayat</strong>
@@ -652,7 +975,7 @@ body {
 
             <!-- Statistik Cepat Section -->
             <div class="row mb-4">
-                <h5 class="section-title mb-3"><i class="bi bi-speedometer2"></i> Statistik Cepat</h5>
+                <h5 class="section-title"><i class="bi bi-speedometer2"></i> Statistik Cepat</h5>
 
                 <div class="col-md-4 mb-3">
                     <div class="stat-card stat-card-1 h-100">
@@ -708,7 +1031,7 @@ body {
             <?php if ($latest_shipment): ?>
             <div class="row mb-4">
                 <div class="col-12">
-                    <h5 class="section-title mb-3"><i class="bi bi-diagram-3"></i> Status Pengiriman Terbaru</h5>
+                    <h5 class="section-title"><i class="bi bi-diagram-3"></i> Status Pengiriman Terbaru</h5>
                     <div class="timeline-card">
                         <div class="timeline-header">
                             <h6>Pengiriman #<?php echo str_pad($latest_shipment['id'], 5, '0', STR_PAD_LEFT); ?></h6>
@@ -761,7 +1084,7 @@ body {
 
             <!-- Dampak Lingkungan Section -->
             <div class="row mb-4">
-                <h5 class="section-title mb-3"><i class="bi bi-graph-up-arrow"></i> Dampak Lingkungan</h5>
+                <h5 class="section-title"><i class="bi bi-graph-up-arrow"></i> Dampak Lingkungan</h5>
 
                 <div class="col-md-6 mb-3">
                     <div class="impact-card impact-card-carbon h-100">
